@@ -1,0 +1,7 @@
+.env
+env/
+venv/
+db.sqlite3
+**/migrations/*
+!**/migrations/__init__.py
+.DS_Store
