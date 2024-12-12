@@ -39,9 +39,9 @@ export default function NavBar() {
         </div>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end cursor-pointer">
-          <buton className="text-sm/6 font-semibold text-gray-900" onClick={handleLogout}>
+          <button className="text-sm/6 font-semibold text-gray-900" onClick={handleLogout}>
             Logout <span aria-hidden="true">&rarr;</span>
-          </buton>
+          </button>
         </div>
       </nav>
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">

@@ -1,4 +1,32 @@
+import React from "react";
+import TaskApi from "../../services/taskApi";
+
+const sendDelete = async (id)  => {
+  const token = localStorage.getItem("token");
+  const response = await TaskApi.delete_task(token, id)
+  if (response.ok){
+      console.log('Borrado')
+  }else{
+      console.log('Error al borrar')
+  }
+
+};
+
+
 export default function Task({ task }) {
+    
+    const define_color_status = (status_name) => {
+      if (['Pendiente', 'Esperando revisión'].includes(status_name)){
+        return 'bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20'
+      }
+      if (['Atrasada', 'Rechazada'].includes(status_name)){
+        return 'bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10'
+      }
+
+      return 'bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10'
+
+    }
+
     return (
       <div className="bg-white shadow sm:rounded-lg">
         <div className="px-4 py-4 sm:p-6">
@@ -8,8 +36,8 @@ export default function Task({ task }) {
               <h4 className="sr-only">{task.status}</h4>
               <div className="sm:flex sm:items-start">
                 
-              <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
-                {task.status}
+                <span className={`inline-flex items-center rounded-md ${define_color_status(task.status_name)}`}>
+                  { task.status_name }
                 </span>
                 <div className="mt-3 sm:ml-4 sm:mt-0">
                   <div className="text-sm font-medium text-gray-900">Creada: {task.created_at}</div>
@@ -29,6 +57,7 @@ export default function Task({ task }) {
                   Editar
                 </button>
                 <button
+                  onClick={() => sendDelete(task.id)}
                   type="button"
                   className="inline-flex items-center rounded-md bg-red-50 px-3 py-2 text-sm font-semibold text-red-700 shadow-sm ring-1 ring-inset ring-red-300 hover:bg-red"
                 >

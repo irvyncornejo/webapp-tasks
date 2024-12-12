@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Auth from "../services/Auth";
+import MessageError from "./message/Error";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -21,7 +22,12 @@ function Login() {
         localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/tasks");
       } else {
-        setError("Credenciales inválidas. Por favor intenta de nuevo.");
+        if (response.status == 400){
+          setError("Credenciales inválidas. Por favor intenta de nuevo.");
+        }
+        else{
+          setError("Usuario no encontrado");
+        }
       }
     } catch (err) {
       setError("Error al iniciar sesión. Por favor intenta más tarde.");
@@ -29,7 +35,8 @@ function Login() {
   };
 
   return <>
-  <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
+    { error ? <MessageError principal_msg={error} /> : null }
+    <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
 
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img
