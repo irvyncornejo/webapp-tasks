@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import TaskApi from "../../services/taskApi";
+import TaskApi from "../../services/taskApi.js";
 import { useNavigate } from "react-router-dom";
-
 
 
 export default function Task({ task }) {
