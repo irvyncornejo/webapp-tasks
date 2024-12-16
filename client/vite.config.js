@@ -10,9 +10,6 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       react(),
-      resolve({
-        extensions: ['.js', '.jsx'],
-      }),
     ],
     server: {
       host: true,
