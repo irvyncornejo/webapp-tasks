@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Auth from "../services/Auth";
 import MessageError from "./message/Error";
+import logo from "../assets/task.jpeg"
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -41,7 +42,7 @@ function Login() {
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img
             alt="Task App"
-            src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+            src={logo}
             className="mx-auto h-10 w-auto"
         />
         <h2 className="mt-6 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
@@ -103,7 +104,7 @@ function Login() {
 
         <p className="mt-10 text-center text-sm/6 text-gray-500">
             ¿No tienes cuenta?{' '}
-            <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+            <a href="/sign-up" className="font-semibold text-indigo-600 hover:text-indigo-500">
             Registrase
             </a>
         </p>

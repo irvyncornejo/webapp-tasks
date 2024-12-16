@@ -1,6 +1,6 @@
 class Auth {
     constructor(){
-        this.baseUrl = 'http://localhost:8000/api'
+        this.baseUrl = process.env.REACT_APP_API_BASE_URL
     }
 
     async send_post_request(path, body){

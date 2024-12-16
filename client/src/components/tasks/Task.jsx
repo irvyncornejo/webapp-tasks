@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TaskApi from "../../services/taskApi";
+import { useNavigate } from "react-router-dom";
 
-const sendDelete = async (id)  => {
-  const token = localStorage.getItem("token");
-  const response = await TaskApi.delete_task(token, id)
-  if (response.ok){
-      console.log('Borrado')
-  }else{
-      console.log('Error al borrar')
-  }
-
-};
 
 
 export default function Task({ task }) {
-    
+  const navigate = useNavigate();
+
+  const sendDelete = async (id)  => {
+    const token = localStorage.getItem("token");
+    const response = await TaskApi.delete_task(token, id)
+    if (response.ok){
+        navigate("/tasks");
+        console.log('Borrado')
+    }else{
+        console.log('Error al borrar')
+    }
+  
+  };
     const define_color_status = (status_name) => {
       if (['Pendiente', 'Esperando revisión'].includes(status_name)){
         return 'bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20'
@@ -26,6 +29,9 @@ export default function Task({ task }) {
       return 'bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10'
 
     }
+    useEffect(() => {
+
+  }, [navigate]);
 
     return (
       <div className="bg-white shadow sm:rounded-lg">
@@ -46,6 +52,9 @@ export default function Task({ task }) {
                   </div>
                   <div className="mt-1 text-sm text-gray-600 sm:flex sm:items-center">
                     <div>Descripción: {task.description}</div>
+                  </div>
+                  <div className="mt-1 text-sm text-gray-600 sm:flex sm:items-center">
+                    <div>email: {task.email}</div>
                   </div>
                 </div>
               </div>

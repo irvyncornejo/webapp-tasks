@@ -44,7 +44,7 @@ class RegisterView(ObtainAuthToken):
 
                 return Response({
                     'token': token.key,
-                    'user': user.username
+                    'user': user.email
                 }, status=status.HTTP_201_CREATED)
 
         return Response({

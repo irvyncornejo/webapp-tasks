@@ -15,7 +15,7 @@ export default function Tasks() {
     const [prevPage, setPrevPage] = useState(null);
     const [count, setCount] = useState(0);
 
-    const fetchTasks = async (url="http://localhost:8000/api/tasks/") => {
+    const fetchTasks = async (url=`${process.env.REACT_APP_API_BASE_URL}/tasks/`) => {
       const token = localStorage.getItem("token");
       if (!token) {
         navigate("/");
