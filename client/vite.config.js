@@ -8,7 +8,12 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env': env
     },
-    plugins: [react()],
+    plugins: [
+      react(),
+      resolve({
+        extensions: ['.js', '.jsx'],
+      }),
+    ],
     server: {
       host: true,
       port: 5173,
