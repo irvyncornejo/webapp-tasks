@@ -11,6 +11,11 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
     ],
+    resolve:{
+      alias:{
+        src: '/src'
+      }
+    },
     server: {
       host: true,
       port: 5173,
