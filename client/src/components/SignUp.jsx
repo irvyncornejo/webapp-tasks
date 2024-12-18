@@ -16,7 +16,8 @@ function SignUp() {
     setError("");
 
     try {
-      const response = await Auth.createUser(username, email, password)
+      const auth = new Auth()
+      const response = await auth.createUser(username, email, password)
       console.log(response)
       if (response.ok) {
         const data = await response.json();

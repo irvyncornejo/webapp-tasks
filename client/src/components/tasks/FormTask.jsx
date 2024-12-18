@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { PlusIcon } from '@heroicons/react/20/solid';
-import TaskApi from "../../services/taskApi.js";
+import TaskApi from "../../services/taskApi";
 
 
 export default function CreateTaskForm({ onSave, handleError }) {
@@ -25,7 +25,8 @@ export default function CreateTaskForm({ onSave, handleError }) {
   const handleSubmit = async (e)  => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    const response = await TaskApi.create_task(token, formData)
+    const taskApi = new TaskApi()
+    const response = await taskApi.create_task(token, formData)
     if (!response.ok){
         handleError('Error al crear Task')
     }else{

@@ -15,7 +15,8 @@ function Login() {
     setError("");
 
     try {
-      const response = await Auth.getToken(email, password)
+      const auth = new Auth()
+      const response = await auth.getToken(email, password)
       console.log(response)
       if (response.ok) {
         const data = await response.json();

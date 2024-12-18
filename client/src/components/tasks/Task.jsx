@@ -8,7 +8,8 @@ export default function Task({ task }) {
 
   const sendDelete = async (id)  => {
     const token = localStorage.getItem("token");
-    const response = await TaskApi.delete_task(token, id)
+    const taskApi = new TaskApi()
+    const response = await taskApi.delete_task(token, id)
     if (response.ok){
         navigate("/tasks");
         console.log('Borrado')
